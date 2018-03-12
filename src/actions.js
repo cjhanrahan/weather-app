@@ -11,10 +11,10 @@ export function requestComplete(response) {
     }
 }
 
-export function requestError(error) {
+export function requestError(errorMessage) {
     return {
         type: 'REQUEST_ERROR',
-        payload: error,
+        payload: errorMessage,
     }
 }
 
@@ -28,17 +28,18 @@ export function updateZipCode(zipCode) {
 
 export function submit() {
     const dispatchHandler = (dispatch, getState) => {
-        if (getState().app.status !== 'loading') {
-            dispatch(loadingBegun)
-            return fetchQuery()
+        const { status, zipCode } = getState().app
+        if (status !== 'loading') {
+            dispatch(loadingBegun())
+            return fetchQuery({ zip: zipCode })
                 .then((response) => {
                     dispatch(requestComplete(response))
                 })
                 .catch((error) => {
-                    dispatch(requestError(error))
-                    throw error
+                    dispatch(requestError(error.message))
                 })
         }
+        return Promise.resolve()
     }
     return dispatchHandler
 }

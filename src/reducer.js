@@ -4,6 +4,7 @@ export const defaultState = {
     status: 'idle',
     zipCode: '',
     lastResult: {},
+    lastErrorMessage: null,
 }
 
 export const app = (state = defaultState, action) => {
@@ -23,7 +24,7 @@ export const app = (state = defaultState, action) => {
         return {
             ...state,
             status: 'error',
-            lastResult: action.payload,
+            lastErrorMessage: action.payload,
         }
     case 'UPDATE_ZIP_CODE':
         return {

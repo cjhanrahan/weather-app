@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, StyleSheet, TextInput, View } from 'react-native'
+import { Button, Image, StyleSheet, TextInput, View } from 'react-native'
 import { string, func } from 'prop-types'
 import { MainAppText } from './style'
 
@@ -13,33 +13,39 @@ const styles = StyleSheet.create({
 })
 
 const Form = ({
-    lastResult,
+    iconUrl,
     status,
     submit,
     updateZipCode,
+    weatherDescription,
     zipCode,
 }) => (
     <View style={styles.container}>
-        <MainAppText>Enter zip code:</MainAppText>
         <TextInput
             style={{ height: 40 }}
-            placeholder="type here"
+            placeholder="Enter zip code"
             value={zipCode}
             onChangeText={updateZipCode}
+            keyboardType="numeric"
         />
-        <Button onPress={submit} title="abc" />
-        <MainAppText>{`your zip code is: ${zipCode}`}</MainAppText>
+        <Button onPress={submit} title="Get Weather" />
+        {iconUrl ? <Image source={{ uri: iconUrl }} style={{ height: 50, width: 50 }} /> : null}
         <MainAppText>{`status: ${status}`}</MainAppText>
-        <MainAppText>{`result: ${lastResult}`}</MainAppText>
+        <MainAppText>{`description: ${weatherDescription}`}</MainAppText>
     </View>
 )
 
 Form.propTypes = {
-    lastResult: string.isRequired,
+    weatherDescription: string.isRequired,
     status: string.isRequired,
     submit: func.isRequired,
     updateZipCode: func.isRequired,
     zipCode: string.isRequired,
+    iconUrl: string,
+}
+
+Form.defaultProps = {
+    iconUrl: null,
 }
 
 export default Form

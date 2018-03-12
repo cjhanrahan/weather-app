@@ -4,9 +4,14 @@ import {
     submit,
     updateZipCode,
 } from './actions'
+import {
+    getWeatherIconURL,
+    getWeatherSentence,
+} from './selectors'
 
 export const mapStateToProps = ({ app }) => ({
-    lastResult: JSON.stringify(app.lastResult),
+    weatherDescription: getWeatherSentence(app),
+    iconUrl: getWeatherIconURL(app),
     status: app.status,
     zipCode: app.zipCode,
 })
