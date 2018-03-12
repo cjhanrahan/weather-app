@@ -1,25 +1,17 @@
 import React from 'react'
-import { StyleSheet, TextInput, View } from 'react-native'
-import { MainAppText } from './src/style/text'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './src/reducer'
+import Form from './src/Form'
+// import FormContainer from './src/FormContainer'
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-})
+const store = createStore(reducer)
+
 
 const App = () => (
-    <View style={styles.container}>
-        <MainAppText>Enter zip code</MainAppText>
-        <TextInput
-            style={{ height: 40 }}
-            placeholder="type here"
-        />
-        <MainAppText>abc 123</MainAppText>
-    </View>
+    <Provider store={store}>
+        <Form zipCode="123" onChangeZipCode={() => {}} />
+    </Provider>
 )
 
 
