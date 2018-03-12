@@ -1,16 +1,11 @@
 import React from 'react'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import reducer from './src/reducer'
-import Form from './src/Form'
-// import FormContainer from './src/FormContainer'
-
-const store = createStore(reducer)
-
+import store from './src/store'
+import FormContainer from './src/FormContainer'
 
 const App = () => (
     <Provider store={store}>
-        <Form zipCode="123" onChangeZipCode={() => {}} />
+        <FormContainer />
     </Provider>
 )
 

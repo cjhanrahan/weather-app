@@ -1,12 +1,18 @@
 import { connect } from 'react-redux'
 import Form from './Form'
-import { updateZipCode } from './actions'
+import {
+    submit,
+    updateZipCode,
+} from './actions'
 
-export const mapStateToProps = state => ({
-    zipCode: state.zipCode,
+export const mapStateToProps = ({ app }) => ({
+    lastResult: JSON.stringify(app.lastResult),
+    status: app.status,
+    zipCode: app.zipCode,
 })
 
 export const actions = {
+    submit,
     updateZipCode,
 }
 

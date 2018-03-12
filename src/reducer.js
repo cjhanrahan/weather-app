@@ -1,10 +1,30 @@
-const defaultState = {
-    zipcode: '',
+import { combineReducers } from 'redux'
+
+export const defaultState = {
+    status: 'idle',
+    zipCode: '',
+    lastResult: {},
 }
 
-const reducer = (state = defaultState, action) => {
-    // throw new Error(JSON.stringify(state))
+export const app = (state = defaultState, action) => {
     switch (action.type) {
+    case 'LOADING_BEGUN':
+        return {
+            ...state,
+            status: 'loading',
+        }
+    case 'REQUEST_COMPLETE':
+        return {
+            ...state,
+            status: 'idle',
+            lastResult: action.payload,
+        }
+    case 'REQUEST_ERROR':
+        return {
+            ...state,
+            status: 'error',
+            lastResult: action.payload,
+        }
     case 'UPDATE_ZIP_CODE':
         return {
             ...state,
@@ -14,5 +34,7 @@ const reducer = (state = defaultState, action) => {
         return state
     }
 }
+
+const reducer = combineReducers({ app })
 
 export default reducer
