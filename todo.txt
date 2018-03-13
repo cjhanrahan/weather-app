@@ -1,1 +1,4 @@
-get icon to show
+split into form and results
+search by city name
+get better icons
+zipcode size

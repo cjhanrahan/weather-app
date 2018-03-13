@@ -1,10 +1,17 @@
 import React from 'react'
 import { node } from 'prop-types'
-import { Text } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 
+
+export const mainAppStyles = StyleSheet.create({
+    main: {
+        fontWeight: '600',
+        fontSize: 24,
+    }
+})
 
 export const MainAppText = ({ children }) => (
-    <Text style={{ fontWeight: '900' }}>
+    <Text style={[mainAppStyles.main]}>
         {children}
     </Text>
 )

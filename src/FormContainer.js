@@ -10,9 +10,8 @@ import {
 } from './selectors'
 
 export const mapStateToProps = ({ app }) => ({
-    weatherDescription: getWeatherSentence(app),
     iconUrl: getWeatherIconURL(app),
-    status: app.status,
+    weatherDescription: getWeatherSentence(app),
     zipCode: app.zipCode,
 })
 
