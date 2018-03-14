@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 
 export const defaultState = {
     status: 'idle',
-    zipCode: '',
+    zipCode: '94040',
     lastResult: {},
     lastErrorMessage: null,
 }

@@ -7,14 +7,23 @@ import {
     View,
 } from 'react-native'
 import { string, func } from 'prop-types'
-import { mainAppStyles } from './style'
+import { colors, mainAppStyles, MainAppText } from './style'
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
+        paddingTop: 60,
+        paddingBottom: 30,
+    },
+    inputWrapper: {
+        borderWidth: 2,
+        borderColor: colors.dark,
+        margin: 8,
+        padding: 4,
+        width: 300,
     },
 })
 
@@ -29,14 +38,17 @@ const Form = ({
     }
     return (
         <View style={styles.container}>
-            <TextInput
-                style={mainAppStyles.main}
-                placeholder="Enter zip code"
-                value={zipCode}
-                onChangeText={updateZipCode}
-                keyboardType="numeric"
-            />
-            <Button onPress={onPress} title="Get Weather" />
+            <MainAppText>Search by zip code or city name</MainAppText>
+            <View style={styles.inputWrapper}>
+                <TextInput
+                    style={mainAppStyles.main}
+                    placeholder="Search here"
+                    value={zipCode}
+                    onChangeText={updateZipCode}
+                    keyboardType="numeric"
+                />
+            </View>
+            <Button onPress={onPress} color={colors.medium} title="Get Weather" />
         </View>
     )
 }

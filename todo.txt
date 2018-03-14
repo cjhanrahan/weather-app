@@ -1,4 +1,5 @@
-split into form and results
 search by city name
+show city name
+show temperature
+use git status
 get better icons
-zipcode size
