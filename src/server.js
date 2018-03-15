@@ -1,4 +1,5 @@
-const appId = '59cc6901083537aad4cd2960f838b0a0'
+const { appId } = require('../config.json')
+
 const mainUrl = 'http://api.openweathermap.org/data/2.5/weather'
 
 function getQueryString(params) {

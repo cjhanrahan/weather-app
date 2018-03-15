@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
     cityName: {
         paddingBottom: spacing.small
     },
+    smallText: {
+        marginTop: 60,
+    },
+
 })
 
 const Results = ({
@@ -48,7 +52,9 @@ const Results = ({
                 <Image source={{ uri: iconUrl }} style={styles.image} />
                 : null
             }
-            <SmallText>{timeString && `Temperature measured at: ${timeString}`}</SmallText>
+            <View style={styles.smallText}>
+                <SmallText>{timeString && `Temperature measured at: ${timeString}`}</SmallText>
+            </View>
         </View>
     )
 }
