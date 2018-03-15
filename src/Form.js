@@ -7,7 +7,7 @@ import {
     View,
 } from 'react-native'
 import { string, func } from 'prop-types'
-import { colors, mainAppStyles, MainAppText } from './style'
+import { colors, mainAppStyles, MainAppText, spacing } from './style'
 
 const styles = StyleSheet.create({
     container: {
@@ -15,8 +15,9 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         alignItems: 'center',
         justifyContent: 'space-around',
-        paddingTop: 60,
-        paddingBottom: 30,
+        paddingTop: spacing.medium,
+        paddingBottom: spacing.small,
+        width: '100%',
     },
     inputWrapper: {
         borderWidth: 2,
@@ -28,9 +29,9 @@ const styles = StyleSheet.create({
 })
 
 const Form = ({
+    searchTerm,
     submit,
-    updateZipCode,
-    zipCode,
+    updateSearchTerm,
 }) => {
     const onPress = () => {
         submit()
@@ -38,14 +39,13 @@ const Form = ({
     }
     return (
         <View style={styles.container}>
-            <MainAppText>Search by zip code or city name</MainAppText>
+            <MainAppText>Search by city name or zip code</MainAppText>
             <View style={styles.inputWrapper}>
                 <TextInput
                     style={mainAppStyles.main}
                     placeholder="Search here"
-                    value={zipCode}
-                    onChangeText={updateZipCode}
-                    keyboardType="numeric"
+                    value={searchTerm}
+                    onChangeText={updateSearchTerm}
                 />
             </View>
             <Button onPress={onPress} color={colors.medium} title="Get Weather" />
@@ -54,9 +54,9 @@ const Form = ({
 }
 
 Form.propTypes = {
+    searchTerm: string.isRequired,
     submit: func.isRequired,
-    updateZipCode: func.isRequired,
-    zipCode: string.isRequired,
+    updateSearchTerm: func.isRequired,
 }
 
 export default Form

@@ -10,7 +10,8 @@ function getQueryString(params) {
 export function fetchQuery(params) {
     const queryString = getQueryString({
         ...params,
-        APPID: appId,
+        appId,
+        units: 'imperial',
     })
     return fetch(`${mainUrl}?${queryString}`)
         .then((response) => {

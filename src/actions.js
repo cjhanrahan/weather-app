@@ -1,4 +1,5 @@
 import { fetchQuery } from './server'
+import { getSearchParameters } from './selectors'
 
 export function loadingBegun() {
     return { type: 'LOADING_BEGUN' }
@@ -19,19 +20,20 @@ export function requestError(errorMessage) {
 }
 
 
-export function updateZipCode(zipCode) {
+export function updateSearchTerm(searchTerm) {
     return {
-        type: 'UPDATE_ZIP_CODE',
-        payload: zipCode,
+        type: 'UPDATE_SEARCH_TERM',
+        payload: searchTerm,
     }
 }
 
 export function submit() {
     const dispatchHandler = (dispatch, getState) => {
-        const { status, zipCode } = getState().app
-        if (status !== 'loading') {
+        const { app } = getState()
+        if (app.status !== 'loading') {
             dispatch(loadingBegun())
-            return fetchQuery({ zip: zipCode })
+            const params = getSearchParameters(app)
+            return fetchQuery(params)
                 .then((response) => {
                     dispatch(requestComplete(response))
                 })

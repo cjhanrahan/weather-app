@@ -11,8 +11,14 @@ export const colors = {
 }
 
 export const fontSizes = {
+    tiny: 15,
     medium: 24,
     large: 30,
+}
+
+export const spacing = {
+    medium: 60,
+    small: 35,
 }
 
 
@@ -45,3 +51,15 @@ export const HeaderText = ({ children }) => (
 HeaderText.propTypes = { children: node }
 
 HeaderText.defaultProps = { children: null }
+
+export const SmallText = ({ children }) => (
+    <MainAppText>
+        <Text style={{ fontSize: fontSizes.tiny }}>
+            {children}
+        </Text>
+    </MainAppText>
+)
+
+SmallText.propTypes = { children: node }
+
+SmallText.defaultProps = { children: null }

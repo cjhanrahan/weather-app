@@ -18,6 +18,10 @@ export function getCityName({ lastResult }) {
     return prop('name', lastResult)
 }
 
+export function getCurrentTemperature({ lastResult }) {
+    return path(['main', 'temp'], lastResult) || null
+}
+
 export function getWeatherIconURL({ lastResult, status }) {
     if (status === 'error') {
         return null
@@ -28,4 +32,20 @@ export function getWeatherIconURL({ lastResult, status }) {
 
 export function getErrorMessage({ lastErrorMessage, status }) {
     return status === 'error' ? lastErrorMessage : null
+}
+
+export function getTimeString({ lastResult }) {
+    if (!lastResult.dt) {
+        return null
+    }
+    const date = new Date(lastResult.dt * 1000)
+    return date.toLocaleTimeString()
+}
+
+export function getSearchParameters({ searchTerm }) {
+    const trimmed = searchTerm.trim()
+    if (/\d{%}/.test(trimmed)) {
+        return { zip: trimmed }
+    }
+    return { q: encodeURIComponent(trimmed) }
 }

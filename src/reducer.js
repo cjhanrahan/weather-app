@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 
 export const defaultState = {
     status: 'idle',
-    zipCode: '94040',
+    searchTerm: '94040',
     lastResult: {},
     lastErrorMessage: null,
 }
@@ -26,10 +26,10 @@ export const app = (state = defaultState, action) => {
             status: 'error',
             lastErrorMessage: action.payload,
         }
-    case 'UPDATE_ZIP_CODE':
+    case 'UPDATE_SEARCH_TERM':
         return {
             ...state,
-            zipCode: action.payload,
+            searchTerm: action.payload,
         }
     default:
         return state

@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import Form from './Form'
 import {
     submit,
-    updateZipCode,
+    updateSearchTerm,
 } from './actions'
 import {
     getWeatherIconURL,
@@ -12,12 +12,12 @@ import {
 export const mapStateToProps = ({ app }) => ({
     iconUrl: getWeatherIconURL(app),
     weatherDescription: getWeatherSentence(app),
-    zipCode: app.zipCode,
+    searchTerm: app.searchTerm,
 })
 
 export const actions = {
     submit,
-    updateZipCode,
+    updateSearchTerm,
 }
 
 export default connect(mapStateToProps, actions)(Form)

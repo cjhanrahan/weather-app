@@ -1,5 +1,5 @@
+rename zip code in reducer
 search by city name
-show city name
 show temperature
-use git status
 get better icons
+searchTerm size
